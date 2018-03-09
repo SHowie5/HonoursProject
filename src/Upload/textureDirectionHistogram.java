@@ -10,12 +10,12 @@ import javax.imageio.ImageIO;
 import com.sun.org.apache.xml.internal.utils.URI;
 
 public class textureDirectionHistogram {
-
+	
+	BufferedImage bImage = null;
+	double imageSize;
+	
 	public void readImage(String image) {
-		
-		BufferedImage bImage = null;
-		double imageSize;
-		
+
 		// Checks if input is from local file or URL
 		boolean check = checkInput(image);
 
@@ -36,7 +36,9 @@ public class textureDirectionHistogram {
 				e.printStackTrace();
 			}
 		}
+
 	}
+	
 	
 	public boolean checkInput(String input) {
 		try {
