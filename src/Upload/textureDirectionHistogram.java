@@ -36,6 +36,9 @@ public class textureDirectionHistogram {
 				e.printStackTrace();
 			}
 		}
+		
+		// Edge detection code
+		
 
 	}
 	
