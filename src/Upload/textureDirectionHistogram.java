@@ -1,21 +1,27 @@
 package Upload;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.ImagingOpException;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 
 import com.sun.org.apache.xml.internal.utils.URI;
 
+import stores.UploadStore;
+
 public class textureDirectionHistogram {
 	
+	UploadStore us = new UploadStore();
 	BufferedImage bImage = null;
 	double imageSize;
 	
 	public void readImage(String image) {
-
+		
 		// Checks if input is from local file or URL
 		boolean check = checkInput(image);
 
@@ -38,7 +44,7 @@ public class textureDirectionHistogram {
 		}
 		
 		// Edge detection code
-				
+
 		for (int x = 0; x < bImage.getWidth(); x++) {
 			for (int y = 0; y < bImage.getHeight(); y++) {
 				int clr = bImage.getRGB(x, y);
