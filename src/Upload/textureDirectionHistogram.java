@@ -15,13 +15,13 @@ import com.sun.org.apache.xml.internal.utils.URI;
 import stores.UploadStore;
 
 public class textureDirectionHistogram {
-	
+
 	UploadStore us = new UploadStore();
 	BufferedImage bImage = null;
 	double imageSize;
-	
-	public void readImage(String image) {
-		
+
+	public void readImage(String image) throws IOException {
+
 		// Checks if input is from local file or URL
 		boolean check = checkInput(image);
 
@@ -42,7 +42,7 @@ public class textureDirectionHistogram {
 				e.printStackTrace();
 			}
 		}
-		
+
 		// Edge detection code
 
 		for (int x = 0; x < bImage.getWidth(); x++) {
@@ -53,21 +53,27 @@ public class textureDirectionHistogram {
 				int blue = clr & 0x000000ff;
 
 				float luminance = (red * 0.2126f + green * 0.7152f + blue * 0.0722f) / 255;
-				
+
 				// choose brightness threshold as appropriate:
 				if (luminance >= 0.5f) {
-				    // bright color
+					// bright colour
 					bImage.setRGB(x, y, 255);
 				} else {
-				    // dark color
+					// dark colour
 					bImage.setRGB(x, y, 0);
 				}
 			}
 		}
-		
+
+		try {
+			File output = new File("edge.png");
+			ImageIO.write(bImage, "png", output);
+			System.out.println("Edge Pic Saved: " + output.getAbsolutePath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
-	
+
 	public boolean checkInput(String input) {
 		try {
 			URI uri = new URI(input);

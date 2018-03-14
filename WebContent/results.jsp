@@ -5,9 +5,6 @@
 <%@ page import="Upload.*"%>
 <%@ page import="Upload.imageHistogram"%>
 
-
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,6 +19,8 @@
 		String filePath = us.getFilePath();
 		String keyword = us.getKeyword();
 		ArrayList<ebayResults> results = us.getResults();
+		textureDirectionHistogram tdh = new textureDirectionHistogram();
+		tdh.readImage(filePath);
 	%>
 	<!-- Display Image uploaded to search -->
 	<div class="uploadedImage">
