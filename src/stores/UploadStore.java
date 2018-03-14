@@ -1,5 +1,6 @@
 package stores;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,6 +19,7 @@ public class UploadStore{
 	public static ArrayList<String> ebayPics = new ArrayList<String>();
 	public static ArrayList<String> htmlResults = new ArrayList<String>();
 	public static ArrayList<ebayResults> results = new ArrayList<ebayResults>();
+	public static BufferedImage bImage = null;
 
 	
 	public void Uploader() {
@@ -88,6 +90,14 @@ public class UploadStore{
 	
 	public void clearEbayResults() {
 		results.clear();
+	}
+	
+	public void setImage(BufferedImage bImage) {
+		UploadStore.bImage = bImage;
+	}
+	
+	public BufferedImage getImage() {
+		return bImage;
 	}
 
 }

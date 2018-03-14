@@ -38,7 +38,27 @@ public class textureDirectionHistogram {
 		}
 		
 		// Edge detection code
+				
+		for (int x = 0; x < bImage.getWidth(); x++) {
+			for (int y = 0; y < bImage.getHeight(); y++) {
+				int clr = bImage.getRGB(x, y);
+				int red = (clr & 0x00ff0000) >> 16;
+				int green = (clr & 0x0000ff00) >> 8;
+				int blue = clr & 0x000000ff;
 
+				float luminance = (red * 0.2126f + green * 0.7152f + blue * 0.0722f) / 255;
+				
+				// choose brightness threshold as appropriate:
+				if (luminance >= 0.5f) {
+				    // bright color
+					bImage.setRGB(x, y, 255);
+				} else {
+				    // dark color
+					bImage.setRGB(x, y, 0);
+				}
+			}
+		}
+		
 	}
 	
 	

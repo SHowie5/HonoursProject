@@ -16,6 +16,7 @@ public class ebayResults {
 		this.itemID = itemID;
 		this.galleryUrl = galleryUrl;
 		this.currentPrice = currentPrice;
+		this.itemUrl = itemUrl;
 	}
 	
 	public void setScore(double score) {
@@ -69,7 +70,7 @@ public class ebayResults {
 	@Override
 	public String toString() {
 		return ("Score:" + score + "Title:" + title + "ItemID:" + itemID + "GalleryURL:" + galleryUrl + "Price:"
-				+ currentPrice);
+				+ currentPrice + "ItemUrl:" + itemUrl);
 	}
 
 }
