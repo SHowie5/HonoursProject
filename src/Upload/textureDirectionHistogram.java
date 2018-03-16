@@ -1,11 +1,8 @@
 package Upload;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.ImagingOpException;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -43,30 +40,46 @@ public class textureDirectionHistogram {
 			}
 		}
 
-		// Edge detection code
+		// Edge detection code	
 
 		for (int x = 0; x < bImage.getWidth(); x++) {
-			for (int y = 0; y < bImage.getHeight(); y++) {
-				int clr = bImage.getRGB(x, y);
-				int red = (clr & 0x00ff0000) >> 16;
-				int green = (clr & 0x0000ff00) >> 8;
-				int blue = clr & 0x000000ff;
-
-				float luminance = (red * 0.2126f + green * 0.7152f + blue * 0.0722f) / 255;
+			for (int y = 0; y < bImage.getHeight()-1; y++) {
+				
+				int topPixel = bImage.getRGB(x, y);
+				int redTop = (topPixel & 0x00ff0000) >> 16;
+				int greenTop = (topPixel & 0x0000ff00) >> 8;
+				int blueTop = topPixel & 0x000000ff;
+				
+				int lowerPixel = bImage.getRGB(x, y+1);
+				int redLower = (lowerPixel & 0x00ff0000) >> 16;
+				int greenLower = (lowerPixel & 0x0000ff00) >> 8;
+				int blueLower = lowerPixel & 0x000000ff;
+				
+				double topIntensity = (redTop + greenTop + blueTop) / 3;
+				double lowerIntensity = (redLower + greenLower + blueLower) / 3;
+				
+				//float luminance = (red * 0.2126f + green * 0.7152f + blue * 0.0722f) / 255;
 
 				// choose brightness threshold as appropriate:
-				if (luminance >= 0.5f) {
-					// bright colour
-					bImage.setRGB(x, y, 255);
+				
+				if(Math.abs(topIntensity - lowerIntensity) < 20) {
+					bImage.setRGB(x, y, 16777215);
 				} else {
-					// dark colour
 					bImage.setRGB(x, y, 0);
 				}
+				
+//				if (luminance >= 0.5f) {
+//					// bright colour
+//					bImage.setRGB(x, y, 16777215);
+//				} else {
+//					// dark colour
+//					bImage.setRGB(x, y, 0);
+//				}
 			}
 		}
 
 		try {
-			File output = new File("edge.png");
+			File output = new File("C:\\Users\\Scott Howie\\eclipse-workspace\\edge.png");
 			ImageIO.write(bImage, "png", output);
 			System.out.println("Edge Pic Saved: " + output.getAbsolutePath());
 		} catch (IOException e) {
