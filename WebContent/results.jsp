@@ -19,8 +19,6 @@
 		String filePath = us.getFilePath();
 		String keyword = us.getKeyword();
 		ArrayList<ebayResults> results = us.getResults();
-		textureDirectionHistogram tdh = new textureDirectionHistogram();
-		tdh.readImage(filePath);
 	%>
 	<!-- Display Image uploaded to search -->
 	<div class="uploadedImage">

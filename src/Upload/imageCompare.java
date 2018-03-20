@@ -1,12 +1,14 @@
 package Upload;
 
+import java.io.IOException;
+
 import Upload.imageHistogram;
 
 public class imageCompare {
 	
 	public static double colourScore;
 
-	public void compareImages(String imageA, String imageB) {
+	public void compareImages(String imageA, String imageB) throws IOException {
 		
 		// Get colour histogram for image A
 		imageHistogram ih = new imageHistogram();
@@ -27,6 +29,17 @@ public class imageCompare {
 		double A_bb3 = ih.normBB3;
 		double A_bb4 = ih.normBB4;
 		
+		//Get texture direction histogram for image A
+		textureDirectionHistogram tdh = new textureDirectionHistogram();
+		tdh.readImage(imageB);
+		
+		double A_td1 = tdh.norm1;
+		double A_td2 = tdh.norm2;
+		double A_td3 = tdh.norm3;
+		double A_td4 = tdh.norm4;
+		double A_td5 = tdh.norm5;
+		double A_td6 = tdh.norm6;
+		
 		// Get colour histogram for image B
 		ih.readImage(imageB);
 		
@@ -45,6 +58,17 @@ public class imageCompare {
 		double B_bb3 = ih.normBB3;
 		double B_bb4 = ih.normBB4;
 		
+		// Get texture diretion histogram for image B
+		tdh.readImage(imageA);
+		
+		double B_td1 = tdh.norm1;
+		double B_td2 = tdh.norm2;
+		double B_td3 = tdh.norm3;
+		double B_td4 = tdh.norm4;
+		double B_td5 = tdh.norm5;
+		double B_td6 = tdh.norm6;
+		
+		// Calculate colour difference between images
 		double diffRB1 = A_rb1 - B_rb1;		
 		double diffRB2 = A_rb2 - B_rb2;
 		double diffRB3 = A_rb3 - B_rb3;
@@ -63,8 +87,17 @@ public class imageCompare {
 		double diffBB4 = A_bb4 - B_bb4;
 		double totalBlue = diffBB1 + diffBB2 + diffBB3 + diffBB4;
 		
+		// Calculate texture direction difference between images
+		double diffTDB1 = A_td1 - B_td1;
+		double diffTDB2 = A_td2 - B_td2;
+		double diffTDB3 = A_td3 - B_td3;
+		double diffTDB4 = A_td4 - B_td4;
+		double diffTDB5 = A_td5 - B_td5;
+		double diffTDB6 = A_td6 - B_td6;
+		double totalTextDir = diffTDB1 + diffTDB2 + diffTDB3 + diffTDB4 + diffTDB5 + diffTDB6;	
 		
-		imageCompare.colourScore = Math.abs(totalRed + totalGreen + totalBlue);
+		
+		imageCompare.colourScore = Math.abs(totalRed + totalGreen + totalBlue + totalTextDir);
 
 		//System.out.println("Total Difference: " + (colourScore));
 	}
