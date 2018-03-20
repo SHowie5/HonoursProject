@@ -40,41 +40,30 @@ public class textureDirectionHistogram {
 			}
 		}
 
-		// Edge detection code	
-
+		// Edge detection code
 		for (int x = 0; x < bImage.getWidth(); x++) {
-			for (int y = 0; y < bImage.getHeight()-1; y++) {
-				
+			for (int y = 0; y < bImage.getHeight() - 1; y++) {
+
+				// Get RGB of top pixel
 				int topPixel = bImage.getRGB(x, y);
 				int redTop = (topPixel & 0x00ff0000) >> 16;
 				int greenTop = (topPixel & 0x0000ff00) >> 8;
 				int blueTop = topPixel & 0x000000ff;
-				
-				int lowerPixel = bImage.getRGB(x, y+1);
+				// Get RGB of lower pixel
+				int lowerPixel = bImage.getRGB(x, y + 1);
 				int redLower = (lowerPixel & 0x00ff0000) >> 16;
 				int greenLower = (lowerPixel & 0x0000ff00) >> 8;
 				int blueLower = lowerPixel & 0x000000ff;
-				
+				// Calculate intensity of both pixels
 				double topIntensity = (redTop + greenTop + blueTop) / 3;
 				double lowerIntensity = (redLower + greenLower + blueLower) / 3;
-				
-				//float luminance = (red * 0.2126f + green * 0.7152f + blue * 0.0722f) / 255;
-
-				// choose brightness threshold as appropriate:
-				
-				if(Math.abs(topIntensity - lowerIntensity) < 20) {
-					bImage.setRGB(x, y, 16777215);
-				} else {
+				// Set edges colour
+				if (Math.abs(topIntensity - lowerIntensity) < 20) {
 					bImage.setRGB(x, y, 0);
+				} else {
+					bImage.setRGB(x, y, 16777215);
 				}
-				
-//				if (luminance >= 0.5f) {
-//					// bright colour
-//					bImage.setRGB(x, y, 16777215);
-//				} else {
-//					// dark colour
-//					bImage.setRGB(x, y, 0);
-//				}
+
 			}
 		}
 
