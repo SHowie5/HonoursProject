@@ -39,36 +39,9 @@ public class textureDirectionHistogram {
 				e.printStackTrace();
 			}
 		}
+		
+		edgeDetection();
 
-		// Edge detection code
-		for (int x = 0; x < bImage.getWidth(); x++) {
-			for (int y = 0; y < bImage.getHeight() - 1; y++) {
-
-				// Get intensity of top left pixel
-				int pixel = bImage.getRGB(x, y);
-				double topPixel = pixelIntensity(pixel);
-				// Get intensity of lower pixel
-				int bottomPixel = bImage.getRGB(x, y+1);
-				double lowerPixel = pixelIntensity(bottomPixel);
-				// Set edges colour
-				if (Math.abs(topPixel - lowerPixel) < 20) {
-					//Black pixel
-					bImage.setRGB(x, y, 0);
-				} else {
-					//White pixel
-					bImage.setRGB(x, y, 16777215);
-				}
-
-			}
-		}
-
-		try {
-			File output = new File("C:\\Users\\Scott Howie\\eclipse-workspace\\edge.png");
-			ImageIO.write(bImage, "png", output);
-			System.out.println("Edge Pic Saved: " + output.getAbsolutePath());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public boolean checkInput(String input) {
@@ -81,15 +54,46 @@ public class textureDirectionHistogram {
 		}
 
 	}
-	
+
+	public void edgeDetection() {
+		// Edge detection code
+		for (int x = 0; x < bImage.getWidth(); x++) {
+			for (int y = 0; y < bImage.getHeight() - 1; y++) {
+
+				// Get intensity of top left pixel
+				int pixel = bImage.getRGB(x, y);
+				double topPixel = pixelIntensity(pixel);
+				// Get intensity of lower pixel
+				int bottomPixel = bImage.getRGB(x, y + 1);
+				double lowerPixel = pixelIntensity(bottomPixel);
+				// Set edges colour
+				if (Math.abs(topPixel - lowerPixel) < 20) {
+					// Black pixel
+					bImage.setRGB(x, y, 0);
+				} else {
+					// White pixel
+					bImage.setRGB(x, y, 16777215);
+				}
+			}
+		}
+
+		try {
+			File output = new File("C:\\Users\\Scott Howie\\eclipse-workspace\\edge.png");
+			ImageIO.write(bImage, "png", output);
+			System.out.println("Edge Pic Saved: " + output.getAbsolutePath());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public double pixelIntensity(int pixel) {
-		
+
 		int red = (pixel & 0x00ff0000) >> 16;
 		int green = (pixel & 0x0000ff00) >> 8;
 		int blue = pixel & 0x000000ff;
-		
+
 		double intensity = (red + green + blue) / 3;
-		
+
 		return intensity;
 	}
 }
