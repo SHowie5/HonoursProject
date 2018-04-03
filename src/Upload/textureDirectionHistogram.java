@@ -108,7 +108,7 @@ public class textureDirectionHistogram {
 					// White pixel
 					bImage.setRGB(x, y, 16777215);
 					numOfEdges = numOfEdges + 1;
-					textureDirection(x, y);
+					textureHistograms(x, y);
 				}
 			}
 		}
@@ -123,7 +123,7 @@ public class textureDirectionHistogram {
 		// }
 	}
 
-	public void textureDirection(int x, int y) {
+	public void textureHistograms(int x, int y) {
 
 		int topleft = bImage.getRGB(x - 1, y - 1);
 		double top_left = pixelIntensity(topleft);
@@ -154,13 +154,38 @@ public class textureDirectionHistogram {
 		double x_direction = ((top_right - top_left) / 2 + (centre_right - centre_left) / 2
 				+ (bottom_right - bottom_left) / 2) / 3;
 
-		// double angle = Math.abs(Math.toDegrees(Math.atan(y_direction /
-		// x_direction)));
-		// System.out.println("Angle: " + angle);
+		// Find angle of edge
+		double angle = Math.abs(Math.toDegrees(Math.atan(y_direction /
+		x_direction)));
+		//System.out.println("Angle: " + angle);
+		textureScale(angle, x, y);
 
 		double normal = Math.pow((Math.pow(y_direction, 2) + Math.pow(x_direction, 2)), 0.5);
 		// System.out.println("Normal: " + normal);
 		directionBuckets(normal);
+	}
+	
+	public void textureScale(double angle, int x, int y) {
+		
+		if(angle >= 0 && angle < 25) {
+			System.out.println("Walk East");
+		} else if (angle >= 25 && angle < 65) {
+			System.out.println("Walk South East");
+		} else if (angle >= 65 && angle < 110) {
+			System.out.println("Walk South");
+		} else if (angle >= 110 && angle < 155) {
+			System.out.println("Walk South West");
+		} else if (angle >= 155 && angle < 190) {
+			System.out.println("Walk West");
+		} else if (angle >= 190 && angle < 245) {
+			System.out.println("Walk North West");
+		} else if (angle >= 245 && angle < 290) {
+			System.out.println("Walk North");
+		} else if (angle >= 290 && angle < 345) {
+			System.out.println("Walk North East");
+		} else {
+			System.out.println("Walk East");
+		}
 	}
 
 	public void directionBuckets(double normal) {
