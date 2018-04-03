@@ -32,6 +32,7 @@ public class imageCompare {
 		//Get texture direction histogram for image A
 		textureDirectionHistogram tdh = new textureDirectionHistogram();
 		tdh.readImage(imageB);
+
 		
 		double A_td1 = tdh.norm1;
 		double A_td2 = tdh.norm2;

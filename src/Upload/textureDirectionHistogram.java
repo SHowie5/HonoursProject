@@ -54,9 +54,6 @@ public class textureDirectionHistogram {
 				e.printStackTrace();
 			}
 		}
-		
-		// Edge detection code
-		
 
 		numOfEdges = 0;
 
@@ -155,37 +152,53 @@ public class textureDirectionHistogram {
 				+ (bottom_right - bottom_left) / 2) / 3;
 
 		// Find angle of edge
-		double angle = Math.abs(Math.toDegrees(Math.atan(y_direction /
-		x_direction)));
-		//System.out.println("Angle: " + angle);
-		textureScale(angle, x, y);
+		// double angle = Math.abs(Math.toDegrees(Math.atan(y_direction /
+		// x_direction)));
+		// System.out.println("Angle: " + angle);
 
 		double normal = Math.pow((Math.pow(y_direction, 2) + Math.pow(x_direction, 2)), 0.5);
 		// System.out.println("Normal: " + normal);
 		directionBuckets(normal);
+		textureScale(normal, x, y);
 	}
-	
+
 	public void textureScale(double angle, int x, int y) {
-		
-		if(angle >= 0 && angle < 25) {
+
+		// Checks direction of angle for algorithm to walk in
+		// Only need to check 0 - 180 degrees
+		if (angle >= 0 && angle < 22.5) {
+			walkEast(angle, x, y);
 			System.out.println("Walk East");
-		} else if (angle >= 25 && angle < 65) {
+		} else if (angle >= 22.5 && angle < 67.5) {
+			walkSouthEast(x, y);
 			System.out.println("Walk South East");
-		} else if (angle >= 65 && angle < 110) {
+		} else if (angle >= 67.6 && angle < 112.5) {
+			walkSouth(x, y);
 			System.out.println("Walk South");
-		} else if (angle >= 110 && angle < 155) {
+		} else if (angle >= 112.5 && angle < 157.5) {
+			walkSouthWest(x, y);
 			System.out.println("Walk South West");
-		} else if (angle >= 155 && angle < 190) {
-			System.out.println("Walk West");
-		} else if (angle >= 190 && angle < 245) {
-			System.out.println("Walk North West");
-		} else if (angle >= 245 && angle < 290) {
-			System.out.println("Walk North");
-		} else if (angle >= 290 && angle < 345) {
-			System.out.println("Walk North East");
-		} else {
-			System.out.println("Walk East");
 		}
+	}
+
+	// Loops to search in direction of pixel until finds pixel with same direction
+	public void walkEast(double angle, int x, int y) {
+		// Loop to walk east direction
+		for(int i = x; i < bImage.getWidth(); i++) {
+			
+		}
+	}
+
+	public void walkSouthEast(int x, int y) {
+
+	}
+
+	public void walkSouth(int x, int y) {
+
+	}
+
+	public void walkSouthWest(int x, int y) {
+
 	}
 
 	public void directionBuckets(double normal) {
@@ -208,7 +221,6 @@ public class textureDirectionHistogram {
 		} else {
 			bucket6 = bucket6 + 1;
 		}
-
 	}
 
 	public void normaliseBuckets() {
