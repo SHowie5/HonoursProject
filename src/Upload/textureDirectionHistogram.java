@@ -18,6 +18,7 @@ public class textureDirectionHistogram {
 	double imageSize;
 	int numOfEdges = 0;
 
+	//Texture direction buckets
 	double bucket1 = 0;
 	double bucket2 = 0;
 	double bucket3 = 0;
@@ -31,6 +32,21 @@ public class textureDirectionHistogram {
 	double norm4 = 0;
 	double norm5 = 0;
 	double norm6 = 0;
+	
+	//Texture scale buckets
+	double distanceBucket1 = 0;
+	double distanceBucket2 = 0;
+	double distanceBucket3 = 0;
+	double distanceBucket4 = 0;
+	double distanceBucket5 = 0;
+	double distanceBucket6 = 0;
+	
+	double distanceNorm1 = 0;
+	double distanceNorm2 = 0;
+	double distanceNorm3 = 0;
+	double distanceNorm4 = 0;
+	double distanceNorm5 = 0;
+	double distanceNorm6 = 0;
 
 	public void readImage(String image) throws IOException {
 
@@ -167,38 +183,95 @@ public class textureDirectionHistogram {
 		// Checks direction of angle for algorithm to walk in
 		// Only need to check 0 - 180 degrees
 		if (angle >= 0 && angle < 22.5) {
-			walkEast(angle, x, y);
-			System.out.println("Walk East");
+			walkEast(x, y);
+			// System.out.println("Walk East");
 		} else if (angle >= 22.5 && angle < 67.5) {
 			walkSouthEast(x, y);
-			System.out.println("Walk South East");
+			// System.out.println("Walk South East");
 		} else if (angle >= 67.6 && angle < 112.5) {
 			walkSouth(x, y);
-			System.out.println("Walk South");
+			// System.out.println("Walk South");
 		} else if (angle >= 112.5 && angle < 157.5) {
 			walkSouthWest(x, y);
-			System.out.println("Walk South West");
+			// System.out.println("Walk South West");
 		}
 	}
 
-	// Loops to search in direction of pixel until finds pixel with same direction
-	public void walkEast(double angle, int x, int y) {
-		// Loop to walk east direction
-		for(int i = x; i < bImage.getWidth(); i++) {
-			
-		}
+	public void walkEast(int x, int y) {
+		// Calculate distance from
+		int currX = 0;
+		int currY = 0;
+
+		int xDistance = x - currX;
+		int yDistance = y - currY;
+
+		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
+		System.out.println(distance);
+
+		currX = x;
+		currY = y;
 	}
 
 	public void walkSouthEast(int x, int y) {
+		int currX = 0;
+		int currY = 0;
 
+		int xDistance = x - currX;
+		int yDistance = y - currY;
+
+		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
+		System.out.println(distance);
+
+		currX = x;
+		currY = y;
 	}
 
 	public void walkSouth(int x, int y) {
+		int currX = 0;
+		int currY = 0;
 
+		int xDistance = x - currX;
+		int yDistance = y - currY;
+
+		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
+		System.out.println(distance);
+
+		currX = x;
+		currY = y;
 	}
 
 	public void walkSouthWest(int x, int y) {
+		int currX = 0;
+		int currY = 0;
 
+		int xDistance = x - currX;
+		int yDistance = y - currY;
+
+		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
+		System.out.println(distance);
+
+		currX = x;
+		currY = y;
+	}
+
+	public void distanceBuckets(double distance) {
+		/*
+		 * Histogram buckets Bucket Ranges: 1 = 0-99, 2 = 100-199, 3 = 200-299, 4 = 300-399,
+		 * 5 = 400-499, 6 = 500+
+		 */
+		if (distance < 100) {
+			distanceBucket1 = distanceBucket1 + 1;
+		} else if(distance >= 100 && distance < 200) {
+			distanceBucket2 = distanceBucket2 + 1;
+		} else if(distance >= 200 && distance < 300) {
+			distanceBucket3 = distanceBucket3 + 1;
+		} else if(distance >= 300 && distance < 400) {
+			distanceBucket4 = distanceBucket4 + 1;
+		} else if(distance >= 400 && distance < 500) {
+			distanceBucket5 = distanceBucket5 + 1;
+		} else {
+			distanceBucket6 = distanceBucket6 + 1;
+		}
 	}
 
 	public void directionBuckets(double normal) {
@@ -231,6 +304,13 @@ public class textureDirectionHistogram {
 		norm4 = bucket4 / numOfEdges;
 		norm5 = bucket5 / numOfEdges;
 		norm6 = bucket6 / numOfEdges;
+		
+		distanceNorm1 = distanceBucket1 / numOfEdges;
+		distanceNorm2 = distanceBucket2 / numOfEdges;
+		distanceNorm3 = distanceBucket3 / numOfEdges;
+		distanceNorm4 = distanceBucket4 / numOfEdges;
+		distanceNorm5 = distanceBucket5 / numOfEdges;
+		distanceNorm6 = distanceBucket6 / numOfEdges;
 	}
 
 	public double pixelIntensity(int pixel) {
