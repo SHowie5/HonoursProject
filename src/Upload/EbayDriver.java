@@ -27,7 +27,7 @@ public class EbayDriver {
 		public static final String OPERATION_NAME = "findItemsByKeywords";
 		public static final String GLOBAL_ID = "EBAY-US";
 		public final static int REQUEST_DELAY = 1000;
-		public final static int MAX_RESULTS = 50;
+		public final static int MAX_RESULTS = 5000;
 		private int maxResults;
 
 		public EbayDriver() {
@@ -57,7 +57,7 @@ public class EbayDriver {
 		}
 
 		private String createAddress(String tag) {
-
+			
 			// substitute token
 			String address = EbayDriver.EBAY_FINDING_SERVICE_URI;
 			address = address.replace("{version}", EbayDriver.SERVICE_VERSION);
@@ -105,14 +105,8 @@ public class EbayDriver {
 				String title = (String) xpath.evaluate("title", node, XPathConstants.STRING);
 				String itemUrl = (String) xpath.evaluate("viewItemURL", node, XPathConstants.STRING);
 				String galleryUrl = (String) xpath.evaluate("galleryURL", node, XPathConstants.STRING);
-
 				String currentPrice = (String) xpath.evaluate("sellingStatus/currentPrice", node,
 						XPathConstants.STRING);
-
-//				print("currentPrice", currentPrice);
-//				print("itemId", itemId);
-//				print("title", title);
-//				print("galleryUrl", galleryUrl);
 							
 				ic.compareImages(imageA, galleryUrl);
 				double score = ic.getScore();
