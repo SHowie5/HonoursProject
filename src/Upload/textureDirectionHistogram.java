@@ -126,14 +126,6 @@ public class textureDirectionHistogram {
 			}
 		}
 
-		// try {
-		// File output = new File("C:\\Users\\Scott
-		// Howie\\eclipse-workspace\\edge.png");
-		// ImageIO.write(bImage, "png", output);
-		// System.out.println("Edge Pic Saved: " + output.getAbsolutePath());
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
 	}
 
 	public void textureHistograms(int x, int y) {
@@ -173,7 +165,6 @@ public class textureDirectionHistogram {
 		// System.out.println("Angle: " + angle);
 
 		double normal = Math.pow((Math.pow(y_direction, 2) + Math.pow(x_direction, 2)), 0.5);
-		// System.out.println("Normal: " + normal);
 		directionBuckets(normal);
 		textureScale(normal, x, y);
 	}
@@ -184,16 +175,12 @@ public class textureDirectionHistogram {
 		// Only need to check 0 - 180 degrees
 		if (angle >= 0 && angle < 22.5) {
 			walkEast(x, y);
-			// System.out.println("Walk East");
 		} else if (angle >= 22.5 && angle < 67.5) {
 			walkSouthEast(x, y);
-			// System.out.println("Walk South East");
 		} else if (angle >= 67.6 && angle < 112.5) {
 			walkSouth(x, y);
-			// System.out.println("Walk South");
 		} else if (angle >= 112.5 && angle < 157.5) {
 			walkSouthWest(x, y);
-			// System.out.println("Walk South West");
 		}
 	}
 
@@ -206,8 +193,8 @@ public class textureDirectionHistogram {
 		int yDistance = y - currY;
 
 		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-		System.out.println(distance);
-
+		distanceBuckets(distance);
+		
 		currX = x;
 		currY = y;
 	}
@@ -220,7 +207,7 @@ public class textureDirectionHistogram {
 		int yDistance = y - currY;
 
 		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-		System.out.println(distance);
+		distanceBuckets(distance);
 
 		currX = x;
 		currY = y;
@@ -234,8 +221,8 @@ public class textureDirectionHistogram {
 		int yDistance = y - currY;
 
 		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-		System.out.println(distance);
-
+		distanceBuckets(distance);
+		
 		currX = x;
 		currY = y;
 	}
@@ -248,8 +235,7 @@ public class textureDirectionHistogram {
 		int yDistance = y - currY;
 
 		double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
-		System.out.println(distance);
-
+		distanceBuckets(distance);
 		currX = x;
 		currY = y;
 	}
@@ -297,14 +283,14 @@ public class textureDirectionHistogram {
 	}
 
 	public void normaliseBuckets() {
-
+		// Normalise direction buckets
 		norm1 = bucket1 / numOfEdges;
 		norm2 = bucket2 / numOfEdges;
 		norm3 = bucket3 / numOfEdges;
 		norm4 = bucket4 / numOfEdges;
 		norm5 = bucket5 / numOfEdges;
 		norm6 = bucket6 / numOfEdges;
-		
+		// Normalise distance buckets
 		distanceNorm1 = distanceBucket1 / numOfEdges;
 		distanceNorm2 = distanceBucket2 / numOfEdges;
 		distanceNorm3 = distanceBucket3 / numOfEdges;

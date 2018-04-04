@@ -122,7 +122,7 @@ public class imageCompare {
 		double diffTSB6 = A_ts6 - B_ts6;
 		double totalTextScale = diffTSB1 + diffTSB2 + diffTSB3 + diffTSB4 + diffTSB5 + diffTSB6;
 			
-		imageCompare.colourScore = Math.abs(totalRed + totalGreen + totalBlue + totalTextDir + totalTextScale);
+		imageCompare.colourScore = Math.abs(totalRed + totalGreen + totalBlue + totalTextDir);
 	}
 	
 	public double getScore() {		

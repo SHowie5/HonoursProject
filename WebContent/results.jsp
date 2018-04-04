@@ -27,7 +27,7 @@
 	</div>
 	<!-- Display eBay results -->
 	<%
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < results.size(); i++) {
 	%>
 	<div class="ebay_results">
 		<img src="<%=results.get(i).getGalleryUrl()%>" border=2><br>
