@@ -183,7 +183,7 @@ public class imageHistogram {
 	public boolean checkInput(String input) {
 		try {
 			URI uri = new URI(input);
-			return uri.getScheme().equals("http") || uri.getScheme().equals("https");
+			return uri.getScheme().equals("http") || uri.getScheme().equals("https") || uri.getScheme().equals("gs");
 
 		} catch (Exception e) {
 			return false;

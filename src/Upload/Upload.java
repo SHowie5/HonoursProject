@@ -96,9 +96,12 @@ public class Upload extends HttpServlet {
 					session.setAttribute("UploadStore", us);
 					// Saves file to upload directory
 					item.write(uploadedFile);
+					// Sends image to Google Vision API
+					googleVision gv = new googleVision();
+					gv.main(filePath);
 					// Sends image to Blippar API
-					blipparAPI blip = new blipparAPI();
-					blip.main(filePath);
+//					blipparAPI blip = new blipparAPI();
+//					blip.main(filePath);
 					// Call eBay API
 					EbayDriver.main(null);
 				}
@@ -140,9 +143,12 @@ public class Upload extends HttpServlet {
 		UploadStore us = new UploadStore();
 		us.setFilePath(filePath);
 		session.setAttribute("UploadStore", us);
+		// Google vision API
+		googleVision gv = new googleVision();
+		gv.main(filePath);
 		// Sends image to Blippar API
-		blipparAPI blip = new blipparAPI();
-		blip.main(filePath);
+//		blipparAPI blip = new blipparAPI();
+//		blip.main(filePath);
 		// Call eBay API
 		EbayDriver.main(null);
 

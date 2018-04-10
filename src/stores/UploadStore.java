@@ -6,8 +6,10 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.*;
 import Upload.*;
 
 public class UploadStore{
@@ -56,10 +58,14 @@ public class UploadStore{
 	public void setKeyword(String jsonString) {
 
 		JsonParser jsonParser = new JsonParser();
-		JsonArray array = jsonParser.parse(jsonString).getAsJsonArray();
-		JsonObject arr = new JsonObject();
-		arr.add("JsonObject", array.get(0));
-		String keyword = arr.getAsJsonObject("JsonObject").get("DisplayName").toString();
+		JsonObject jo = jsonParser.parse(jsonString).getAsJsonObject();
+		JsonElement response = jo.getAsJsonArray("responses").get(0);
+		JsonObject obj = response.getAsJsonObject();
+		JsonObject wd = obj.get("webDetection").getAsJsonObject();
+		JsonArray we = wd.getAsJsonArray("webEntities");
+		JsonObject desc = we.get(0).getAsJsonObject();
+		String keyword = desc.get("description").toString();
+		System.out.println(keyword);
 		UploadStore.keyword = keyword;
 	}
 	
