@@ -26,8 +26,8 @@ public class EbayDriver {
 		public static final String SERVICE_VERSION = "1.0.0";
 		public static final String OPERATION_NAME = "findItemsByKeywords";
 		public static final String GLOBAL_ID = "EBAY-US";
-		public final static int REQUEST_DELAY = 1000;
-		public final static int MAX_RESULTS = 5000;
+		public final static int REQUEST_DELAY = 5000;
+		public final static int MAX_RESULTS = 50;
 		private int maxResults;
 
 		public EbayDriver() {
@@ -132,9 +132,9 @@ public class EbayDriver {
 
 		public static void main(String[] args) throws Exception {
 			
-			EbayDriver driver = new EbayDriver();
 			UploadStore us = new UploadStore();	
 			String tag = us.getKeyword();
+			EbayDriver driver = new EbayDriver();
 			driver.run(java.net.URLEncoder.encode(tag, "UTF-8"));
 
 		}

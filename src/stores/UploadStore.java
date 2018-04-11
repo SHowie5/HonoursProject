@@ -65,7 +65,7 @@ public class UploadStore{
 		JsonArray we = wd.getAsJsonArray("webEntities");
 		JsonObject desc = we.get(0).getAsJsonObject();
 		String keyword = desc.get("description").toString();
-		System.out.println(keyword);
+
 		UploadStore.keyword = keyword;
 	}
 	

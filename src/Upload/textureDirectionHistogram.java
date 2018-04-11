@@ -103,27 +103,31 @@ public class textureDirectionHistogram {
 	}
 
 	public void edgeDetection() {
-		// Edge detection code
-		for (int x = 1; x < bImage.getWidth() - 1; x++) {
-			for (int y = 1; y < bImage.getHeight() - 1; y++) {
-
-				// Get intensity of top left pixel
-				int pixel = bImage.getRGB(x, y);
-				double centrePixel = pixelIntensity(pixel);
-				// Get intensity of lower pixel
-				int bottomPixel = bImage.getRGB(x, y + 1);
-				double lowerPixel = pixelIntensity(bottomPixel);
-				// Set edges colour
-				if (Math.abs(centrePixel - lowerPixel) < 20) {
-					// Black pixel
-					bImage.setRGB(x, y, 0);
-				} else {
-					// White pixel
-					bImage.setRGB(x, y, 16777215);
-					numOfEdges = numOfEdges + 1;
-					textureHistograms(x, y);
+		if(bImage != null) {
+			// Edge detection code
+			for (int x = 1; x < bImage.getWidth() - 1; x++) {
+				for (int y = 1; y < bImage.getHeight() - 1; y++) {
+	
+					// Get intensity of top left pixel
+					int pixel = bImage.getRGB(x, y);
+					double centrePixel = pixelIntensity(pixel);
+					// Get intensity of lower pixel
+					int bottomPixel = bImage.getRGB(x, y + 1);
+					double lowerPixel = pixelIntensity(bottomPixel);
+					// Set edges colour
+					if (Math.abs(centrePixel - lowerPixel) < 20) {
+						// Black pixel
+						bImage.setRGB(x, y, 0);
+					} else {
+						// White pixel
+						bImage.setRGB(x, y, 16777215);
+						numOfEdges = numOfEdges + 1;
+						textureHistograms(x, y);
+					}
 				}
 			}
+		} else {
+			return;
 		}
 
 	}
@@ -166,7 +170,7 @@ public class textureDirectionHistogram {
 
 		double normal = Math.pow((Math.pow(y_direction, 2) + Math.pow(x_direction, 2)), 0.5);
 		directionBuckets(normal);
-		textureScale(normal, x, y);
+		//textureScale(normal, x, y);
 	}
 
 	public void textureScale(double angle, int x, int y) {

@@ -36,6 +36,8 @@ public class googleVision {
 			httpConnection.setRequestProperty("Content-Type","application/json");
 			httpConnection.setDoOutput(true);
 			
+			
+			// Request for URL or Google bucket file
 			BufferedWriter httpRequestBodyWriter = new BufferedWriter(new OutputStreamWriter(httpConnection.getOutputStream()));
 			httpRequestBodyWriter.write
 			("{\"requests\": [{ \"features\": [ {\"type\": \"WEB_DETECTION\""
@@ -44,7 +46,7 @@ public class googleVision {
 			
 			httpRequestBodyWriter.close();
 			
-			String response = httpConnection.getResponseMessage();
+			//String response = httpConnection.getResponseMessage();
 
 			if(httpConnection.getInputStream()==null)
 			{
@@ -98,7 +100,7 @@ public class googleVision {
 			
 			httpRequestBodyWriter.close();
 	
-			String response = httpConnection.getResponseMessage();
+			//String response = httpConnection.getResponseMessage();
 	
 			if(httpConnection.getInputStream()==null)
 			{
