@@ -8,19 +8,30 @@
 <title>Image Processing for eBay Searching</title>
 </head>
 <body>
-	<h1>Image Processing for eBay Searching</h1>
-	<div>
-		<h2>Upload image to search</h2>
-		<form method="POST" action="Upload" encType="multipart/form-data">
-			<input type="file" name="image" accept="image/*" value="Select image..."> <input
-				type="submit" value="Upload Image">
-		</form>
-		 	
-		<form method="POST" action="Upload">
-		<h2>Search image URL</h2>
-			<input type="text" name="image" accept="image/*" value="Select image...">
+	<!-- Navigation bar -->
+	<div class="navigation-bar">
+		<div id="navigation-container">
+			<img id="uni_logo" src="_images/dundeeuni_logo.png">
+			<ul>
+				<li><a href="upload.jsp">Upload Photo</a></li>
+				<li><a href="results.jsp">Results</a></li>
+			</ul>
+			<img id="ebay_logo" src="_images/ebay_logo.png">
+		</div>
+	</div>
+
+	<!-- Upload image form -->
+	<div class="upload-form">
+		<form id="image-upload" method="POST" action="Upload" encType="multipart/form-data">
+			<h2>Upload image to search</h2>
+			<input type="file" name="image" accept="image/*"value="Select image..."> 
 			<input type="submit" value="Upload Image">
-		</form>		
+		</form>
+		<form id="url-upload" method="POST" action="Upload">
+			<h2>Search image URL</h2>
+			<input type="text" name="image" accept="image/*"value="Paste image URL..."> 
+			<input type="submit" value="Upload Image">
+		</form>
 	</div>
 </body>
 </html>
