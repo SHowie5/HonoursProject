@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="_css/styles.css">
+<script src="jquery-3.3.1.min.js"></script>
 <title>Image Processing for eBay Searching</title>
 </head>
 <body>
@@ -33,5 +34,21 @@
 			<input type="submit" value="Upload Image">
 		</form>
 	</div>
+	
+	<div id="spinner" class="spinner" style="display:none;">
+		<p>Getting results. Please wait...</p>
+		<img src="_images/dundeeuni_logo.png">
+	</div>
+	
+	<script>
+	$('#image-upload').submit(function(){
+		$('#spinner').show();
+		$.post('/results.jsp'), function() {
+			$('#spinner').hide();
+		};
+		return false;
+	});
+	</script>
 </body>
 </html>
+
