@@ -42,12 +42,12 @@ public class imageCompare {
 		double A_td6 = tdh.norm6;
 		 
 		// Get texture scale histogram from image A
-		double A_ts1 = tdh.distanceNorm1;
-		double A_ts2 = tdh.distanceNorm2;
-		double A_ts3 = tdh.distanceNorm3;
-		double A_ts4 = tdh.distanceNorm4;
-		double A_ts5 = tdh.distanceNorm5;
-		double A_ts6 = tdh.distanceNorm6;
+//		double A_ts1 = tdh.distanceNorm1;
+//		double A_ts2 = tdh.distanceNorm2;
+//		double A_ts3 = tdh.distanceNorm3;
+//		double A_ts4 = tdh.distanceNorm4;
+//		double A_ts5 = tdh.distanceNorm5;
+//		double A_ts6 = tdh.distanceNorm6;
 		
 		// Get colour histogram for image B
 		ih.readImage(imageB);
@@ -78,12 +78,12 @@ public class imageCompare {
 		double B_td6 = tdh.norm6;
 		
 		// Get texture scale histogram from image B;
-		double B_ts1 = tdh.distanceNorm1;
-		double B_ts2 = tdh.distanceNorm2;
-		double B_ts3 = tdh.distanceNorm3;
-		double B_ts4 = tdh.distanceNorm4;
-		double B_ts5 = tdh.distanceNorm5;
-		double B_ts6 = tdh.distanceNorm6;
+//		double B_ts1 = tdh.distanceNorm1;
+//		double B_ts2 = tdh.distanceNorm2;
+//		double B_ts3 = tdh.distanceNorm3;
+//		double B_ts4 = tdh.distanceNorm4;
+//		double B_ts5 = tdh.distanceNorm5;
+//		double B_ts6 = tdh.distanceNorm6;
 		
 		// Calculate colour difference between images
 		double diffRB1 = A_rb1 - B_rb1;		
@@ -113,14 +113,14 @@ public class imageCompare {
 		double diffTDB6 = A_td6 - B_td6;
 		double totalTextDir = diffTDB1 + diffTDB2 + diffTDB3 + diffTDB4 + diffTDB5 + diffTDB6;	
 		
-		// Calculate texture scale difference between images
-		double diffTSB1 = A_ts1 - B_ts1;
-		double diffTSB2 = A_ts2 - B_ts2;
-		double diffTSB3 = A_ts3 - B_ts3;
-		double diffTSB4 = A_ts4 - B_ts4;
-		double diffTSB5 = A_ts5 - B_ts5;
-		double diffTSB6 = A_ts6 - B_ts6;
-		double totalTextScale = diffTSB1 + diffTSB2 + diffTSB3 + diffTSB4 + diffTSB5 + diffTSB6;
+//		// Calculate texture scale difference between images
+//		double diffTSB1 = A_ts1 - B_ts1;
+//		double diffTSB2 = A_ts2 - B_ts2;
+//		double diffTSB3 = A_ts3 - B_ts3;
+//		double diffTSB4 = A_ts4 - B_ts4;
+//		double diffTSB5 = A_ts5 - B_ts5;
+//		double diffTSB6 = A_ts6 - B_ts6;
+//		double totalTextScale = diffTSB1 + diffTSB2 + diffTSB3 + diffTSB4 + diffTSB5 + diffTSB6;
 			
 		imageCompare.colourScore = Math.abs(totalRed + totalGreen + totalBlue + totalTextDir);
 	}
