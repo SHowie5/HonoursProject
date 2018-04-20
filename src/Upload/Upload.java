@@ -27,6 +27,7 @@ import stores.UploadStore;
  * Servlet implementation class Upload
  */
 public class Upload extends HttpServlet {
+	UploadStore us = new UploadStore();
 	private static final long serialVersionUID = 1L;
 	private static final String DATA_DIRECTORY = "data";
 	private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
@@ -89,6 +90,7 @@ public class Upload extends HttpServlet {
 
 				if (!item.isFormField()) {
 					String fileName = new File(item.getName()).getName();
+					us.setFilename(fileName);
 					String filePath = uploadFolder + File.separator + fileName;
 					File uploadedFile = new File(filePath);
 					UploadStore us = new UploadStore();
@@ -99,9 +101,6 @@ public class Upload extends HttpServlet {
 					// Sends image to Google Vision API
 					googleVision gv = new googleVision();
 					gv.main(filePath);
-					// Sends image to Blippar API
-//					blipparAPI blip = new blipparAPI();
-//					blip.main(filePath);
 					// Call eBay API
 					EbayDriver.main(null);
 				}
@@ -120,6 +119,7 @@ public class Upload extends HttpServlet {
 	public void urlUpload(HttpServletRequest request, HttpServletResponse response, String imageUrl) throws Exception {
 		HttpSession session = request.getSession();
 		String destinationFile = "image.jpg";
+		us.setFilename(destinationFile);
 		String uploadFolder = getServletContext().getRealPath("") + File.separator + DATA_DIRECTORY;
 		String filePath = uploadFolder + File.separator + destinationFile;
 
@@ -146,10 +146,7 @@ public class Upload extends HttpServlet {
 		// Google vision API
 		googleVision gv = new googleVision();
 		gv.main(filePath);
-		// Sends image to Blippar API
-//		blipparAPI blip = new blipparAPI();
-//		blip.main(filePath);
-		// Call eBay API
+		// eBay API
 		EbayDriver.main(null);
 
 		getServletContext().getRequestDispatcher("/results.jsp").forward(request, response);

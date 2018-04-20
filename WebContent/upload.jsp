@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="_css/styles.css">
-<script src="jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Image Processing for eBay Searching</title>
 </head>
 <body>
@@ -35,18 +35,21 @@
 		</form>
 	</div>
 	
-	<div id="spinner" class="spinner" style="display:none;">
-		<p>Getting results. Please wait...</p>
-		<img src="_images/dundeeuni_logo.png">
-	</div>
-	
 	<script>
-	$('#image-upload').submit(function(){
-		$('#spinner').show();
-		$.post('/results.jsp'), function() {
-			$('#spinner').hide();
-		};
-		return false;
+	$("#image-upload").submit(function(){
+		$.ajax({
+			complete: function(){
+				window.location.href = "loadingPage.jsp";
+			}
+		});
+	});
+	
+	$("#url-upload").submit(function(){
+		$.ajax({
+			complete: function(){
+				window.location.href = "loadingPage.jsp";
+			}
+		});
 	});
 	</script>
 </body>

@@ -158,6 +158,16 @@ body {
 	margin-top: 10px;
 	margin-right: 50px;
 	curson: pointer;
-	box-shadow: 5px 5px 5px grey;
-	
+	box-shadow: 5px 5px 5px grey;	
 }
+
+.loading-spinner{
+	width: 400px;
+	margin: 0 auto;
+	font-family: "Helvetica";
+	font-weight: bold;
+	text-align: center;
+	align: center;
+	margin-top: 100px;
+}
+

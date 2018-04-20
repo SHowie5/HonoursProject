@@ -9,7 +9,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.*;
 import Upload.*;
 
 public class UploadStore{
@@ -22,6 +21,7 @@ public class UploadStore{
 	public static ArrayList<String> htmlResults = new ArrayList<String>();
 	public static ArrayList<ebayResults> results = new ArrayList<ebayResults>();
 	public static BufferedImage bImage = null;
+	public static String filename = null;
 
 	
 	public void Uploader() {
@@ -104,6 +104,14 @@ public class UploadStore{
 	
 	public BufferedImage getImage() {
 		return bImage;
+	}
+	
+	public void setFilename(String filename) {
+		UploadStore.filename = filename;
+	}
+	
+	public String getFilename() {
+		return filename;
 	}
 
 }
