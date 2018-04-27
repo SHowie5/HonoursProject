@@ -30,7 +30,7 @@
 		</form>
 		<form id="url-upload" method="POST" action="Upload">
 			<h2>Search image URL</h2>
-			<input type="text" name="image" accept="image/*"value="Paste image URL..."> 
+			<input type="text" name="image" accept="image/*" placeholder="Paste image URL..."> 
 			<input type="submit" value="Upload Image">
 		</form>
 	</div>
