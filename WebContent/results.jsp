@@ -42,7 +42,7 @@
 	<div class="uploadedImage">
 		<p>Your uploaded image: </p>
 		<img src="/HonoursProject/data/<%=filename%>"/>
-	</div>	
+	</div>
 	<!-- Display eBay results -->
 	<%
 		for (int i = 0; i < resultSize; i++) {

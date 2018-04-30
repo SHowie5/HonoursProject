@@ -11,10 +11,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 import javax.imageio.ImageIO;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import com.sun.org.apache.xml.internal.utils.URI;
 
 import stores.UploadStore;
-import sun.misc.BASE64Encoder;
 
 public class googleVision {
 
@@ -78,8 +79,8 @@ public class googleVision {
 		            ImageIO.write(img, "jpg", bos);
 		            byte[] imageBytes = bos.toByteArray();
 	
-		            BASE64Encoder encoder = new BASE64Encoder();
-		            imageString = encoder.encode(imageBytes);
+		            Base64 encoder = new Base64();	
+		            imageString = Base64.encode(imageBytes);
 	
 		            bos.close();
 		        } catch (IOException e) {
